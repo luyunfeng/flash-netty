@@ -31,6 +31,12 @@ public class NettyServer {
                         System.out.println(ch.attr(clientKey).get());
                     }
                 });
+        // 指定服务端启动的逻辑
+        serverBootstrap.handler(new ChannelInitializer<NioServerSocketChannel>() {
+            protected void initChannel(NioServerSocketChannel ch) {
+                System.out.println("服务端启动中");
+            }
+        });
 
 
         bind(serverBootstrap, BEGIN_PORT);
