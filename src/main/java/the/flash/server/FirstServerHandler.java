@@ -3,9 +3,12 @@ package the.flash.server;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import the.flash.msg.MsgEntity;
 
 import java.nio.charset.Charset;
 import java.util.Date;
+
+import com.alibaba.fastjson.JSON;
 
 /**
  * @author chao.yu
@@ -27,7 +30,12 @@ public class FirstServerHandler extends ChannelInboundHandlerAdapter {
     }
 
     private ByteBuf getByteBuf(ChannelHandlerContext ctx) {
-        byte[] bytes = "你好，欢迎关注我的微信公众号，《闪电侠的博客》!".getBytes(Charset.forName("utf-8"));
+        //byte[] bytes = "你好，欢迎关注我的微信公众号，《闪电侠的博客》!".getBytes(Charset.forName("utf-8"));
+        MsgEntity msgEntity = new MsgEntity();
+        msgEntity.setMsgId("10000");
+        msgEntity.setDate(new Date());
+        msgEntity.setContent("实体消息soul");
+        byte[] bytes = JSON.toJSONBytes(msgEntity);
 
         ByteBuf buffer = ctx.alloc().buffer();
 

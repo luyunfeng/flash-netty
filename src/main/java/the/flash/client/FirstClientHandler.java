@@ -7,6 +7,8 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import java.nio.charset.Charset;
 import java.util.Date;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * @author chao.yu
  * chao.yu@dianping.com
@@ -38,7 +40,8 @@ public class FirstClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf byteBuf = (ByteBuf) msg;
+        String res = byteBuf.toString(Charset.forName("utf-8"));
 
-        System.out.println(new Date() + ": 客户端读到数据 -> " + byteBuf.toString(Charset.forName("utf-8")));
+        System.out.println(new Date() + ": 客户端读到数据 -> " + JSON.parse(res).toString());
     }
 }
