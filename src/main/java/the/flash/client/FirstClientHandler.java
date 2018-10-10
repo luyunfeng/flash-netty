@@ -36,12 +36,15 @@ public class FirstClientHandler extends ChannelInboundHandlerAdapter {
         return buffer;
     }
 
-
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ByteBuf byteBuf = (ByteBuf) msg;
+        ByteBuf byteBuf = (ByteBuf)msg;
         String res = byteBuf.toString(Charset.forName("utf-8"));
+        try {
+            System.out.println(new Date() + ": 客户端读到数据 -> " + JSON.parse(res).toString());
+        } catch (Exception e) {
+            System.out.println(res);
+        }
 
-        System.out.println(new Date() + ": 客户端读到数据 -> " + JSON.parse(res).toString());
     }
 }
