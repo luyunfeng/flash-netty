@@ -54,7 +54,7 @@ public class PacketCodeC {
         // 序列化算法
         byte serializeAlgorithm = byteBuf.readByte();
 
-        // 指令
+        // 指令 这里面就是登陆指令
         byte command = byteBuf.readByte();
 
         // 数据包长度
