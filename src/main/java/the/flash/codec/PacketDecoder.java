@@ -11,6 +11,7 @@ public class PacketDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List out) {
+        System.out.println("解码");
         out.add(PacketCodeC.INSTANCE.decode(in));
     }
 }
