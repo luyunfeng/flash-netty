@@ -18,4 +18,6 @@ public class LoginRequestPacket extends Packet {
 
         return LOGIN_REQUEST;
     }
+
+
 }
